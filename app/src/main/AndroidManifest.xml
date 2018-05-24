@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.HobbyViewActivity" />
-        <activity android:name=".ui.WaveActivity"></activity>
+        <activity android:name=".ui.WaveActivity" />
+        <activity android:name=".ui.AnalogControllerActivity" />
+        <activity android:name=".ui.LineChatViewActivity"></activity>
     </application>
 
 </manifest>

@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.customviewassamble.ui.AnalogControllerActivity;
 import com.example.administrator.customviewassamble.ui.HobbyViewActivity;
+import com.example.administrator.customviewassamble.ui.LineChatViewActivity;
 import com.example.administrator.customviewassamble.ui.WaveActivity;
 
 import java.util.ArrayList;
@@ -47,6 +49,13 @@ public class MainActivity extends AppCompatActivity implements Adapter.OnItemCli
             case 1:
                 intent.setClass(this, WaveActivity.class);
                 break;
+            case 2:
+                intent.setClass(this, AnalogControllerActivity.class);
+                break;
+            case 3:
+                intent.setClass(this, LineChatViewActivity.class);
+                break;
+                default:
         }
         startActivity(intent);
     }
