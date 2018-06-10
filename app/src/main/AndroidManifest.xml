@@ -17,7 +17,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.HobbyViewActivity" />
-        <activity android:name=".ui.WaveActivity"></activity>
+        <activity android:name=".ui.WaveActivity" />
+        <activity android:name=".ui.AnalogControllerActivity" />
+        <activity android:name=".ui.LineChatViewActivity" />
+        <activity
+            android:name=".ui.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.SortActivity" />
+        <activity
+            android:name=".ui.BubbleSortActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.SelectionSortActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".ui.InsertSortActivity"
+            android:screenOrientation="landscape" ></activity>
     </application>
 
 </manifest>

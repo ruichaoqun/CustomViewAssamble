@@ -18,4 +18,7 @@
     <color name="color_10203f">#881E76FA</color>
     <color name="color_883B6D7E">#883B6D7E</color>
 
+    <color name="gray">#DDDDDD</color>
+    <color name="red">#ff0000</color>
+
 </resources>
