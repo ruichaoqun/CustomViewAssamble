@@ -42,4 +42,16 @@ public class SortActivity extends AppCompatActivity {
         Intent intent = new Intent(this,InsertSortActivity.class);
         startActivity(intent);
     }
+
+    public void shellSort(View view) {
+        Intent intent = new Intent(this,ShellSortActivity.class);
+        startActivity(intent);
+    }
+
+    public void quickSort(View view) {
+        Intent intent = new Intent(this,QuickSortActivity.class);
+        startActivity(intent);
+    }
+
+
 }

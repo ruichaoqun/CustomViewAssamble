@@ -23,4 +23,16 @@
         android:layout_height="wrap_content"
         android:text="插入排序"
         android:onClick="insertSort"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="希尔排序"
+        android:onClick="shellSort"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="快速排序"
+        android:onClick="quickSort"/>
 </LinearLayout>

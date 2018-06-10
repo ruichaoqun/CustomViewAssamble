@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.example.administrator.customviewassamble.ui.AnalogControllerActivity;
 import com.example.administrator.customviewassamble.ui.HobbyViewActivity;
 import com.example.administrator.customviewassamble.ui.LineChatViewActivity;
-import com.example.administrator.customviewassamble.ui.ScrollingActivity;
 import com.example.administrator.customviewassamble.ui.SortActivity;
 import com.example.administrator.customviewassamble.ui.WaveActivity;
 
