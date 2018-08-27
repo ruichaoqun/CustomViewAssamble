@@ -7,7 +7,8 @@ import android.util.Log;
 import android.view.View;
 
 public class DrawCardBehavior extends  CoordinatorLayout.Behavior<DrawCardLayout>{
-
+    private int mInitialOffset;
+    private int mMaxOffset;
 
     @Override
     public boolean onMeasureChild(CoordinatorLayout parent, DrawCardLayout child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed) {
@@ -26,6 +27,8 @@ public class DrawCardBehavior extends  CoordinatorLayout.Behavior<DrawCardLayout
                 offset += ((DrawCardLayout)view).getHeadHeight();
             }
         }
+
+
         return offset;
     }
 
@@ -40,6 +43,15 @@ public class DrawCardBehavior extends  CoordinatorLayout.Behavior<DrawCardLayout
             }
         }
         child.offsetTopAndBottom(offset);
+        mInitialOffset = offset;
+
+        mMaxOffset = parent.getMeasuredHeight() - child.getHeadHeight();
+        for (int i = parent.getChildCount(); i > parent.indexOfChild(child) ; i--) {
+            View view = parent.getChildAt(i);
+            if(view instanceof DrawCardLayout){
+                mMaxOffset -= child.getHeadHeight();
+            }
+        }
         return true;
     }
 
@@ -50,11 +62,51 @@ public class DrawCardBehavior extends  CoordinatorLayout.Behavior<DrawCardLayout
     }
 
     @Override
+    public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull DrawCardLayout child, @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
+        int top = child.getTop();
+        int offset = top - dy;
+        consumed[0] = dx;
+        if(offset < mInitialOffset){
+            offset = mInitialOffset;
+            consumed[1] = mInitialOffset - top;
+        }else if(offset > mMaxOffset){
+            offset = mMaxOffset;
+            consumed[1] = -mMaxOffset + top;
+        }else{
+            consumed[1] = dy;
+        }
+        child.offsetTopAndBottom(offset - top);
+        if(dy < 0){
+            int lowChildIndex = 0;
+            for (int i = coordinatorLayout.indexOfChild(child) + 1; i < coordinatorLayout.getChildCount(); i++) {
+                View view = coordinatorLayout.getChildAt(i);
+                if(view instanceof DrawCardLayout){
+                    lowChildIndex ++;
+                    int viewTop = view.getTop();
+                    if(viewTop < top + lowChildIndex* child.getHeadHeight()){
+                        view.offsetTopAndBottom(top + lowChildIndex* child.getHeadHeight() - viewTop);
+                    }
+                }
+            }
+        }else{
+            int aboveChildIndex = 0;
+            for (int i = coordinatorLayout.indexOfChild(child) - 1; i >= 0 ; i--) {
+                View view = coordinatorLayout.getChildAt(i);
+                if(view instanceof DrawCardLayout){
+                    aboveChildIndex ++;
+                    int viewTop = view.getTop();
+                    if(viewTop > top - aboveChildIndex* child.getHeadHeight()){
+                        view.offsetTopAndBottom(top - aboveChildIndex* child.getHeadHeight() - viewTop);
+                    }
+                }
+            }
+        }
+        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
+    }
+
+    @Override
     public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull DrawCardLayout child, @NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
-        int initialOffset = child.getTop();
-        int offset = initialOffset - dyUnconsumed;
-        Log.w("AAA","dyUnconsumed-->"+dyUnconsumed);
-        child.offsetTopAndBottom(dyUnconsumed);
+
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
     }
 }

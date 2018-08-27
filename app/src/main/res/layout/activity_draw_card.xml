@@ -8,23 +8,24 @@
     <com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="sdjg"
+        android:text="1111111111"
         android:colorBackground="#f55"/>
 
-    <!--<com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:text="sdjg"-->
-        <!--android:colorBackground="#5f5"/>-->
+    <com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="2222222"
+        android:colorBackground="#5f5"/>
 
-    <!--<com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:colorBackground="#55f" />-->
+    <com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="33333333"
+        android:colorBackground="#55f" />
 
-    <!--<com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:text="sdjg"-->
-        <!--android:colorBackground="#5ff" />-->
+    <com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="4444444"
+        android:colorBackground="#5ff" />
 </android.support.design.widget.CoordinatorLayout>
