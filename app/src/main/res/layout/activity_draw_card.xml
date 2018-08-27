@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DrawCardActivity">
+    <com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="sdjg"
+        android:colorBackground="#f55"/>
+
+    <!--<com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="sdjg"-->
+        <!--android:colorBackground="#5f5"/>-->
+
+    <!--<com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:colorBackground="#55f" />-->
+
+    <!--<com.example.administrator.customviewassamble.views.drawcardbehavior.DrawCardLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="sdjg"-->
+        <!--android:colorBackground="#5ff" />-->
+</android.support.design.widget.CoordinatorLayout>

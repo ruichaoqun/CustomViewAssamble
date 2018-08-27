@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DrawCardLayout">
+        <attr name="android:text"></attr>
+        <attr name="android:colorBackground"/>
+    </declare-styleable>
+</resources>

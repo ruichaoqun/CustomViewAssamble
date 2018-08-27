@@ -33,8 +33,10 @@
         <activity
             android:name=".ui.QuickSortActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".ui.ShellSortActivity"
-            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".ui.ShellSortActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".ui.DrawCardActivity"></activity>
     </application>
 
 </manifest>

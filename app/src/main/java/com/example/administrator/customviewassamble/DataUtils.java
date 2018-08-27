@@ -13,6 +13,7 @@ public class DataUtils {
         descriptions.add(new Description("AnalogController","圆盘控制器"));
         descriptions.add(new Description("LineChatView","波浪曲线"));
         descriptions.add(new Description("SortDisplayView","排序展示"));
+        descriptions.add(new Description("DrawCardBehavior","自定义Behavior"));
 
     }
 }
