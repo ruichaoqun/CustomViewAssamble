@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.customviewassamble.ui.AnalogControllerActivity;
+import com.example.administrator.customviewassamble.ui.CustomViewActivity;
 import com.example.administrator.customviewassamble.ui.DrawCardActivity;
 import com.example.administrator.customviewassamble.ui.HobbyViewActivity;
 import com.example.administrator.customviewassamble.ui.LineChatViewActivity;
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements Adapter.OnItemCli
                 break;
             case 5:
                 intent.setClass(this, DrawCardActivity.class);
+                break;
+            case 6:
+                intent.setClass(this, CustomViewActivity.class);
                 break;
                 default:
         }
