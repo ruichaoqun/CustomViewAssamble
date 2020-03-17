@@ -1,5 +1,6 @@
 package com.example.administrator.customviewassamble;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -170,6 +171,60 @@ public class SortUtils {
             }
         }).start();
 
+    }
+
+    /**
+     * 归并排序
+     * @param arr
+     * @param left
+     * @param right
+     * @param onExchangedListener
+     */
+    public static void mergeSort(final List<Integer> arr,int left,int right,final OnExchangedListener onExchangedListener){
+        List<Integer> temp = new ArrayList<>(arr.size());
+        mergeSort(arr,left,right,temp,onExchangedListener);
+    }
+
+    /**
+     * 归并排序
+     * @param arr
+     * @param left
+     * @param right
+     * @param temp
+     * @param onExchangedListener
+     */
+    public static void mergeSort(final List<Integer> arr,int left,int right,final List<Integer> temp,final OnExchangedListener onExchangedListener){
+        if(left == right){
+            return;
+        }
+        int mid = (left+right)/2;
+        mergeSort(arr,left,mid,temp,onExchangedListener);
+        mergeSort(arr,mid+1,right,temp,onExchangedListener);
+        merge(arr,left,right,mid,temp,onExchangedListener);
+    }
+
+    public static void merge(final List<Integer> arr,int left,int right,int mid,final List<Integer> temp,final OnExchangedListener onExchangedListener){
+        temp.clear();
+        int p1 = left;
+        int p2 = mid+1;
+        while (p1 <= mid && p2 <=  right){
+            temp.add(arr.get(p1) <= arr.get(p2)?arr.get(p1++):arr.get(p2++));
+        }
+        while (p1 <= mid){
+            temp.add(arr.get(p1++));
+        }
+        while (p2 <= right){
+            temp.add(arr.get(p2++));
+        }
+        for (int i = 0; i < temp.size(); i++) {
+            arr.set(left+i,temp.get(i));
+        }
+        try {
+            Thread.sleep(20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        onExchangedListener.onExchanged(arr);
     }
 
     public static void swap(List<Integer> arr, int i, int j) {

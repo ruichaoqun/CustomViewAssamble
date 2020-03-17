@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.CustomViewActivity"></activity>
+
+        <activity android:name=".ui.LineMoveWithFingerActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,6 +39,8 @@
         <activity
             android:name=".ui.ShellSortActivity"
             android:screenOrientation="landscape" />
+        <activity android:name=".ui.MergeSortActivity"
+            android:screenOrientation="landscape"/>
         <activity android:name=".ui.DrawCardActivity" />
     </application>
 

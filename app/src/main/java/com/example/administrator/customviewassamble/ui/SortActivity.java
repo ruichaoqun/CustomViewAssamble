@@ -53,5 +53,9 @@ public class SortActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void mergeSort(View view) {
+        Intent intent = new Intent(this,MergeSortActivity.class);
+        startActivity(intent);
+    }
 
 }

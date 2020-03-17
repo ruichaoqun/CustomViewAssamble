@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CustomViewAssamble.iml" filepath="$PROJECT_DIR$/CustomViewAssamble.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sourceViewAssamble.iml" filepath="$PROJECT_DIR$/sourceViewAssamble.iml" />
     </modules>
   </component>
 </project>

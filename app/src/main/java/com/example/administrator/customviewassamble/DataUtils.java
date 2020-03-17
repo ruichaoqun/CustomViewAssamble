@@ -14,6 +14,7 @@ public class DataUtils {
         descriptions.add(new Description("LineChatView","波浪曲线"));
         descriptions.add(new Description("SortDisplayView","排序展示"));
         descriptions.add(new Description("DrawCardBehavior","自定义Behavior"));
+        descriptions.add(new Description("LineMOveWithFingerView","粒子效果背景"));
         descriptions.add(new Description("DrawCardBehavior","自定义Behavior"));
 
     }

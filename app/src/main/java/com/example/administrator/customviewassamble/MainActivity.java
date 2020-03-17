@@ -18,6 +18,7 @@ import com.example.administrator.customviewassamble.ui.CustomViewActivity;
 import com.example.administrator.customviewassamble.ui.DrawCardActivity;
 import com.example.administrator.customviewassamble.ui.HobbyViewActivity;
 import com.example.administrator.customviewassamble.ui.LineChatViewActivity;
+import com.example.administrator.customviewassamble.ui.LineMoveWithFingerActivity;
 import com.example.administrator.customviewassamble.ui.SortActivity;
 import com.example.administrator.customviewassamble.ui.WaveActivity;
 
@@ -65,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements Adapter.OnItemCli
                 intent.setClass(this, DrawCardActivity.class);
                 break;
             case 6:
+                intent.setClass(this, LineMoveWithFingerActivity.class);
+                break;
+            case 7:
                 intent.setClass(this, CustomViewActivity.class);
                 break;
                 default:
