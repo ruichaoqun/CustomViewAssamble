@@ -10,9 +10,13 @@ import android.os.HandlerThread;
 import android.os.Message;
 import android.os.SystemClock;
 import android.util.Pair;
+import android.util.TypedValue;
 import android.view.View;
 
 import com.example.administrator.customviewassamble.UIUtils;
+import com.example.administrator.customviewassamble.views.custom.DynamicEffect;
+import com.example.administrator.customviewassamble.views.custom.VisualizerInterface;
+import com.example.administrator.customviewassamble.views.custom.a;
 
 import java.util.Arrays;
 
@@ -21,7 +25,7 @@ import java.util.Arrays;
  * @date :2020/3/17 11:14
  * description:
  */
-public abstract class CustomView extends View {
+public abstract class CustomView extends View implements DynamicEffect {
 
     /* renamed from: i reason: collision with root package name */
     private static final int f9703i = 1300;
@@ -38,7 +42,7 @@ public abstract class CustomView extends View {
 //    private e F;
 //    private com.netease.cloudmusic.module.g.d G;
 //    /* access modifiers changed from: private */
-//    public a H = new a();
+    public a H = new a();
 //    private com.netease.cloudmusic.module.g.a I;
 
     /* renamed from: a reason: collision with root package name */
@@ -63,8 +67,8 @@ public abstract class CustomView extends View {
     /* renamed from: h reason: collision with root package name */
     protected Path mPath;
     private int[] q = a(this.mCircleColor);
-    private int r;
-    private int s;
+    private int mFftLength;
+    private int mSamplingRate;
     private int t;
     private int u;
     private int v;
@@ -73,44 +77,32 @@ public abstract class CustomView extends View {
     private float[] y;
     private float[] z;
 
-//    /* compiled from: ProGuard */
-//    private static class a implements b {
-//
-//        /* renamed from: a reason: collision with root package name */
-//        boolean f9714a;
-//
-//        /* renamed from: b reason: collision with root package name */
-//        float[] f9715b;
-//
-//        public void a() {
-//        }
-//
-//        private a() {
-//        }
-//    }
 
+    @Override
     public void X_() {
     }
 
+    @Override
     public void a(boolean z2) {
     }
 
-    /* access modifiers changed from: protected */
     public boolean a(Canvas canvas) {
         return false;
     }
 
-    /* access modifiers changed from: protected */
     public abstract int[] a(int i2);
 
-    public void b(Object obj, int i2) {
+    @Override
+    public void onWaveFormDataCapture(byte[] waveform, int i2) {
     }
 
-    public boolean b() {
+    @Override
+    public boolean isFft() {
         return true;
     }
 
-    public boolean c() {
+    @Override
+    public boolean isWaveform() {
         return false;
     }
 
@@ -121,45 +113,48 @@ public abstract class CustomView extends View {
         this.mPathPaint.setStyle(Paint.Style.STROKE);
         HandlerThread handlerThread = new HandlerThread("CurveRender");
         handlerThread.start();
-//        this.D = new Handler(handlerThread.getLooper()) {
-//            @Override
-//            public void handleMessage(Message message) {
-//                C0119a aVar = (C0119a) message.obj;
-//                CustomView.this.a(aVar.f9702b, message.arg1, message.arg2);
-//                CustomView.this.H.a(aVar);
-//            }
-//        };
-//        this.mUpdateHandler = new Handler() {
-//            @Override
-//            public void handleMessage(Message message) {
-//                CustomView.this.e();
-//            }
-//        };
+        this.D = new Handler(handlerThread.getLooper()) {
+            @Override
+            public void handleMessage(Message message) {
+                a.VisuralData aVar = (a.VisuralData) message.obj;
+                CustomView.this.a(aVar.data, message.arg1, message.arg2);
+                CustomView.this.H.a(aVar);
+            }
+        };
+        this.mUpdateHandler = new Handler() {
+            @Override
+            public void handleMessage(Message message) {
+                CustomView.this.e();
+            }
+        };
 //        Pair a2 = c.a(4);
 //        this.F = (e) a2.first;
 //        this.G = (com.netease.cloudmusic.module.g.d) a2.second;
 //        this.G.a((f) this);
 
-        this.y = new float[55];
-        this.z = new float[55];
-        this.A = 0.11423973285781065d;
     }
 
-//    public Pair<Integer, Integer> d() {
-//        int a2 = al.a(225.0f);
-//        return new Pair<>(Integer.valueOf(a2), Integer.valueOf(a2));
-//    }
-//
-//    public int b(com.netease.cloudmusic.module.ag.d.d dVar) {
-//        return dVar.c()[1];
-//    }
-//
-//    public int a(com.netease.cloudmusic.module.ag.d.d dVar) {
-//        int d2 = (int) (((double) dVar.d()) * 0.85d);
-//        this.B = 1000000.0f / ((float) d2);
-//        return d2;
-//    }
+    @Override
+    public Pair<Integer, Integer> d() {
+        int a2 = UIUtils.dip2px(getContext(),225.0f);
+        return new Pair<>(a2, a2);
+    }
 
+    @Override
+    public int getCaptureSizeRange(VisualizerInterface visualizerInterface) {
+        return visualizerInterface.getCaptureSizeRange()[1];
+    }
+
+    @Override
+    public int getRate(VisualizerInterface visualizerInterface) {
+        int d2 = (int) (((double) visualizerInterface.getMaxCaptureRate()) * 0.85d);
+        this.B = 1000000.0f / ((float) d2);
+        return d2;
+    }
+
+
+
+    @Override
     public void setColor(int color) {
         if (this.mCircleColor != color) {
             this.mCircleColor = color;
@@ -169,99 +164,99 @@ public abstract class CustomView extends View {
         }
     }
 
-//    public void a(Object obj, int i2) {
-//        int a2 = n.a(obj);
-//        if (a2 > 0) {
-//            if (!(this.r == a2 && this.s == i2)) {
-//                this.r = a2;
-//                this.s = i2;
-//                float f2 = (((float) i2) / 1000.0f) / ((float) this.r);
-//                this.t = (int) Math.ceil((double) (1300.0f / f2));
-//                int min = (Math.min((int) (4800.0f / f2), (a2 / 2) - 1) - this.t) + 1;
-//                this.u = min >= 55 ? min / 55 : -((int) Math.ceil((double) (55.0f / ((float) min))));
-//            }
-//            if (this.w == null) {
-//                this.w = new double[55];
-//                this.x = new float[55];
-//                this.y = new float[55];
-//                this.z = new float[55];
-//                this.A = 0.11423973285781065d;
-//            }
-//            if (this.mCircleRadius > 0) {
-//                Handler handler = this.D;
-//                handler.sendMessage(handler.obtainMessage(1, this.t, this.u, this.H.a(obj, a2)));
-//            }
-//        }
-//    }
+    @Override
+    public void onFftDataCapture(byte[] fft, int samplingRate) {//1024 44100000
+        int length = fft.length;//1024
+        if (length > 0) {
+            if (!(this.mFftLength == length && this.mSamplingRate == samplingRate)) {
+                this.mFftLength = length;//1024
+                this.mSamplingRate = samplingRate;//44100000
+                float f2 = (((float) samplingRate) / 1000.0f) / ((float) this.mFftLength);//42
+                this.t = (int) Math.ceil((double) (1300.0f / f2));//31
+                int min = (Math.min((int) (4800.0f / f2), (length / 2) - 1) - this.t) + 1;//84
+                //4800/42    1024/2 - 1
+                this.u = min >= 55 ? min / 55 : -((int) Math.ceil((double) (55.0f / ((float) min))));//1
+            }
+            if (this.w == null) {
+                this.w = new double[55];
+                this.x = new float[55];
+                this.y = new float[55];
+                this.z = new float[55];
+                this.A = 0.11423973285781065d;
+            }
+            if (this.mCircleRadius > 0) {
+                this.D.obtainMessage(1, this.t, this.u, this.H.a(fft, length)).sendToTarget();
+            }
+        }
+    }
 
-//    public void a(Object obj, int i2, int i3) {
-//        int i4;
-//        com.netease.cloudmusic.module.g.a a2 = this.F.a();
-//        a aVar = (a) a2.a();
-//        if (aVar == null) {
-//            aVar = new a();
-//            a2.a(aVar);
-//        }
-//        aVar.f9714a = n.c(obj);
-//        if (aVar.f9715b == null) {
-//            aVar.f9715b = new float[this.x.length];
-//        }
-//        if (!aVar.f9714a) {
-//            double d2 = 0.0d;
-//            for (int i5 = 0; i5 < this.x.length; i5++) {
-//                if (i3 > 0) {
-//                    i4 = i5 * i3;
-//                } else {
-//                    i4 = i5 / (-i3);
-//                }
-//                double a3 = n.a(obj, (i4 + i2) * 2);
-//                this.w[i5] = a3;
-//                if (a3 > d2) {
-//                    d2 = a3;
-//                }
-//            }
-//            double d3 = d2 * 0.6d;
-//            int i6 = 0;
-//            while (i6 < this.x.length) {
-//                double[] dArr = this.w;
-//                double d4 = dArr[i6] > d3 ? dArr[i6] : 0.0d;
-//                float[] fArr = this.x;
-//                double d5 = d4 / 45.0d;
-//                int i7 = this.v;
-//                fArr[i6] = (float) Math.min(d5 * ((double) i7), (double) i7);
-//                i6++;
-//            }
-//            for (int i8 = 0; i8 < aVar.f9715b.length; i8++) {
-//                aVar.f9715b[i8] = n.a(this.x, i8, 5);
-//            }
-//        } else {
-//            Arrays.fill(aVar.f9715b, 0.0f);
-//        }
-//        this.F.a(a2);
-//    }
+    public void a(Object obj, int i2, int i3) {// 31   1
+        int i4;
+        com.netease.cloudmusic.module.g.a a2 = this.F.a();
+        a aVar = (a) a2.a();
+        if (aVar == null) {
+            aVar = new a();
+            a2.a(aVar);
+        }
+        aVar.f9714a = n.c(obj);
+        if (aVar.f9715b == null) {
+            aVar.f9715b = new float[this.x.length];
+        }
+        if (!aVar.f9714a) {
+            double d2 = 0.0d;
+            for (int i5 = 0; i5 < this.x.length; i5++) {
+                if (i3 > 0) {
+                    i4 = i5 * i3;
+                } else {
+                    i4 = i5 / (-i3);
+                }
+                double a3 = n.a(obj, (i4 + i2) * 2);
+                this.w[i5] = a3;
+                if (a3 > d2) {
+                    d2 = a3;
+                }
+            }
+            double d3 = d2 * 0.6d;
+            int i6 = 0;
+            while (i6 < this.x.length) {
+                double[] dArr = this.w;
+                double d4 = dArr[i6] > d3 ? dArr[i6] : 0.0d;
+                float[] fArr = this.x;
+                double d5 = d4 / 45.0d;
+                int i7 = this.v;
+                fArr[i6] = (float) Math.min(d5 * ((double) i7), (double) i7);
+                i6++;
+            }
+            for (int i8 = 0; i8 < aVar.f9715b.length; i8++) {
+                aVar.f9715b[i8] = n.a(this.x, i8, 5);
+            }
+        } else {
+            Arrays.fill(aVar.f9715b, 0.0f);
+        }
+        this.F.a(a2);
+    }
 
     public void a() {
         this.mUpdateHandler.sendEmptyMessage(1);
     }
 
-    /* access modifiers changed from: private */
-//    public void e() {
-//        com.netease.cloudmusic.module.g.a a2 = this.G.a();
-//        a aVar = (a) a2.a();
-//        this.f9708e = aVar.f9714a;
-//        if (!this.f9708e) {
-//            float[] fArr = this.y;
-//            System.arraycopy(fArr, 0, this.z, 0, fArr.length);
-//        }
-//        this.y = aVar.f9715b;
-//        com.netease.cloudmusic.module.g.a aVar2 = this.I;
-//        if (aVar2 != null) {
-//            this.G.a(aVar2);
-//        }
-//        this.I = a2;
-//        this.C = SystemClock.uptimeMillis();
-//        invalidate();
-//    }
+    public void e() {
+        com.netease.cloudmusic.module.g.a a2 = this.G.a();
+        a aVar = (a) a2.a();
+        this.f9708e = aVar.f9714a;
+        if (!this.f9708e) {
+            float[] fArr = this.y;
+            System.arraycopy(fArr, 0, this.z, 0, fArr.length);
+        }
+        this.y = aVar.f9715b;
+        com.netease.cloudmusic.module.g.a aVar2 = this.I;
+        if (aVar2 != null) {
+            this.G.a(aVar2);
+        }
+        this.I = a2;
+        this.C = SystemClock.uptimeMillis();
+        invalidate();
+    }
 
     @Override
     public void onDraw(Canvas canvas) {
