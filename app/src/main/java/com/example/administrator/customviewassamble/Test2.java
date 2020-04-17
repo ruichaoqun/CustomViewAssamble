@@ -4,16 +4,10 @@ import java.util.Stack;
 
 public class Test2 {
     public static void main(String[] args){
-        Stack<Integer> stack = new Stack<>();
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        stack.push(4);
-        stack.push(5);
-        stack.push(6);
-        System.out.println("原始栈：" + stack);    // [1, 2, 3, 4, 5]
-        reverseStackRecursively(stack);
-        System.out.println("逆序后的栈：" + stack); // [5, 4, 3, 2, 1]
+        byte a = Byte.MIN_VALUE;
+        byte b = 5;
+        float s = (float) a+b;
+        System.out.printf(""+s);
     }
 
     /**
