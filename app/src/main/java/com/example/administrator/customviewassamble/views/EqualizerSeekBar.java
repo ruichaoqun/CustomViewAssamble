@@ -147,6 +147,7 @@ public class EqualizerSeekBar extends View {
                 this.mTouched = true;
                 break;
             case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
                 this.mTouched = false;
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -163,9 +164,7 @@ public class EqualizerSeekBar extends View {
                 progress = (int) (((mMaxTouchHeight - y) / (float) (mMaxTouchHeight - mMinTouchHeight)) * 2400);
                 Log.w("AAAA",progress+"");
                 break;
-            case MotionEvent.ACTION_CANCEL:
-                this.mTouched = false;
-                break;
+            default:
         }
         invalidate();
         return true;
