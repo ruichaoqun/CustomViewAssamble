@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.administrator.customviewassamble.ui.AnalogControllerActivity;
 import com.example.administrator.customviewassamble.ui.CustomViewActivity;
+import com.example.administrator.customviewassamble.ui.DiscViewActivity;
 import com.example.administrator.customviewassamble.ui.DrawCardActivity;
 import com.example.administrator.customviewassamble.ui.EqualizerSeekBarActivity;
 import com.example.administrator.customviewassamble.ui.HobbyViewActivity;
@@ -75,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements Adapter.OnItemCli
                 break;
             case 8:
                 intent.setClass(this, EqualizerSeekBarActivity.class);
+                break;
+            case 9:
+                intent.setClass(this, DiscViewActivity.class);
                 break;
                 default:
         }

@@ -17,6 +17,7 @@ public class DataUtils {
         descriptions.add(new Description("LineMOveWithFingerView","粒子效果背景"));
         descriptions.add(new Description("DrawCardBehavior","自定义Behavior"));
         descriptions.add(new Description("EqualizerSeekBar","均衡器seekbar"));
+        descriptions.add(new Description("DiscView","音乐切换View"));
 
     }
 }
