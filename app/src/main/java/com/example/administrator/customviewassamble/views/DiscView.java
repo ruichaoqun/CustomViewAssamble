@@ -2,6 +2,7 @@ package com.example.administrator.customviewassamble.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -56,8 +57,20 @@ public class DiscView extends FrameLayout {
         public boolean onDoubleTap(MotionEvent e) {
             return super.onDoubleTap(e);
         }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.w("AAAAA","onFling-->"+(e2.getX()-e1.getX())+"   "+velocityX);
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
     };
     private GestureDetector mGesture = new GestureDetector(getContext(), this.mOnGestureListener);
+    private Runnable requestRunnable = new Runnable() {
+        @Override
+        public void run() {
+            requestLayout();
+        }
+    };
 
 
     public DiscView(Context context) {
@@ -83,7 +96,18 @@ public class DiscView extends FrameLayout {
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getActionMasked();
         if(action == MotionEvent.ACTION_UP || action ==  MotionEvent.ACTION_CANCEL){
-            mScroller.startScroll();
+            int width = getMeasuredWidth();
+            if(mDistanceX > width/2){
+                //上一首
+                mScroller.startScroll(0,0,width-mDistanceX,0,400);
+            }else if(mDistanceX < -width/2){
+                //下一首
+                mScroller.startScroll(0,0,-(width+mDistanceX),0,400);
+            }else{
+                //返回当前
+                mScroller.startScroll(0,0,-mDistanceX,0,400);
+            }
+            requestLayout();
         }
         mGesture.onTouchEvent(event);
         return true;
@@ -91,15 +115,26 @@ public class DiscView extends FrameLayout {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        getChildAt(mWhichChild).layout(mDistanceX, 0, mDistanceX + getMeasuredWidth(), getMeasuredHeight());
+        int disX;
+        if(mScroller.computeScrollOffset()){
+            disX = mDistanceX + mScroller.getCurrX();
+        }else{
+            disX = mDistanceX;
+        }
+        getChildAt(mWhichChild).layout(disX, 0, disX + getMeasuredWidth(), getMeasuredHeight());
         int nextLeft, nextRight;
-        if (mDistanceX > 0) {
-            nextLeft = mDistanceX - getMeasuredWidth();
+        if (disX > 0) {
+            nextLeft = disX - getMeasuredWidth();
         } else {
-            nextLeft = getMeasuredWidth() + mDistanceX;
+            nextLeft = getMeasuredWidth() + disX;
         }
         nextRight = nextLeft + getMeasuredWidth();
         getNextView().layout(nextLeft, 0, nextRight, getMeasuredHeight());
+        //如果Scroller未结束。继续刷新layout
+        if (!mScroller.isFinished()) {
+            post(requestRunnable);
+            return;
+        }
     }
 
     private View getCurrentView() {
