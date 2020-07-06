@@ -129,6 +129,7 @@ public class DiscView extends FrameLayout {
             nextLeft = getMeasuredWidth() + disX;
         }
         nextRight = nextLeft + getMeasuredWidth();
+        Log.w("AAAAAA",nextLeft+"");
         getNextView().layout(nextLeft, 0, nextRight, getMeasuredHeight());
         //如果Scroller未结束。继续刷新layout
         if (!mScroller.isFinished()) {
