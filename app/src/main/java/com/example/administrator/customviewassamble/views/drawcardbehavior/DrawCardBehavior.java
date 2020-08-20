@@ -1,9 +1,9 @@
 package com.example.administrator.customviewassamble.views.drawcardbehavior;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.ViewCompat;
-import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.ViewCompat;
+
 import android.view.View;
 
 public class DrawCardBehavior extends  CoordinatorLayout.Behavior<DrawCardLayout>{

@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CustomViewAssamble.iml" filepath="$PROJECT_DIR$/CustomViewAssamble.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CustomViewAssamble-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CustomViewAssamble-app.iml" group="CustomViewAssamble/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Resources-CustomViewAssamble.iml" filepath="$PROJECT_DIR$/.idea/modules/Resources-CustomViewAssamble.iml" group="CustomViewAssamble" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Resources-CustomViewAssamble-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Resources-CustomViewAssamble-app.iml" group="CustomViewAssamble/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/source-CustomViewAssamble.iml" filepath="$PROJECT_DIR$/.idea/modules/source-CustomViewAssamble.iml" group="CustomViewAssamble" />
     </modules>

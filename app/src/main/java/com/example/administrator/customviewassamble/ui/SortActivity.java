@@ -1,19 +1,13 @@
 package com.example.administrator.customviewassamble.ui;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.administrator.customviewassamble.R;
-import com.example.administrator.customviewassamble.SortUtils;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * 排序算法展示

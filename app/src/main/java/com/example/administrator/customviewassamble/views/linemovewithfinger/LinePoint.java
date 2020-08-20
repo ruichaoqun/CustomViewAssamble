@@ -2,7 +2,7 @@ package com.example.administrator.customviewassamble.views.linemovewithfinger;
 
 
 import android.graphics.Point;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 public class LinePoint extends Point {
     public int xSpeed;         //x轴速度

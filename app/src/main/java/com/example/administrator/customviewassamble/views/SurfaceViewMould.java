@@ -2,15 +2,11 @@ package com.example.administrator.customviewassamble.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.support.v4.content.ContextCompat;
+
+import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
-import com.example.administrator.customviewassamble.R;
 
 /**
  * Created by Administrator on 2018/5/5.

@@ -1,9 +1,7 @@
 package com.example.administrator.customviewassamble.ui;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.customviewassamble.R;
 import com.example.administrator.customviewassamble.views.InterestViewGroup;
